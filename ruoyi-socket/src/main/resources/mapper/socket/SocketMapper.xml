@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.socket.mapper.SocketMapper">
+    
+    <resultMap type="Socket" id="SocketResult">
+        <result property="socketId"    column="socket_id"    />
+        <result property="chargerId"    column="charger_id"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectSocketVo">
+        select socket_id, charger_id, status from socket
+    </sql>
+
+    <select id="selectSocketList" parameterType="Socket" resultMap="SocketResult">
+        <include refid="selectSocketVo"/>
+        <where>  
+            <if test="chargerId != null "> and charger_id = #{chargerId}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectSocketBySocketId" parameterType="Long" resultMap="SocketResult">
+        <include refid="selectSocketVo"/>
+        where socket_id = #{socketId}
+    </select>
+
+    <insert id="insertSocket" parameterType="Socket" useGeneratedKeys="true" keyProperty="socketId">
+        insert into socket
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="chargerId != null">charger_id,</if>
+            <if test="status != null and status != ''">status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="chargerId != null">#{chargerId},</if>
+            <if test="status != null and status != ''">#{status},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSocket" parameterType="Socket">
+        update socket
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="chargerId != null">charger_id = #{chargerId},</if>
+            <if test="status != null and status != ''">status = #{status},</if>
+        </trim>
+        where socket_id = #{socketId}
+    </update>
+
+    <delete id="deleteSocketBySocketId" parameterType="Long">
+        delete from socket where socket_id = #{socketId}
+    </delete>
+
+    <delete id="deleteSocketBySocketIds" parameterType="String">
+        delete from socket where socket_id in 
+        <foreach item="socketId" collection="array" open="(" separator="," close=")">
+            #{socketId}
+        </foreach>
+    </delete>
+
+</mapper>

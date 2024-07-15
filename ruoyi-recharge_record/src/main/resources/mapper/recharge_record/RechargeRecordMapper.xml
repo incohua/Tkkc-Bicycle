@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.recharge_record.mapper.RechargeRecordMapper">
+    
+    <resultMap type="RechargeRecord" id="RechargeRecordResult">
+        <result property="rechargeId"    column="recharge_id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="amount"    column="amount"    />
+        <result property="method"    column="method"    />
+        <result property="rechargeTime"    column="recharge_time"    />
+    </resultMap>
+
+    <sql id="selectRechargeRecordVo">
+        select recharge_id, user_id, amount, method, recharge_time from recharge_record
+    </sql>
+
+    <select id="selectRechargeRecordList" parameterType="RechargeRecord" resultMap="RechargeRecordResult">
+        <include refid="selectRechargeRecordVo"/>
+        <where>  
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="amount != null "> and amount = #{amount}</if>
+            <if test="method != null  and method != ''"> and method = #{method}</if>
+            <if test="params.beginRechargeTime != null and params.beginRechargeTime != '' and params.endRechargeTime != null and params.endRechargeTime != ''"> and recharge_time between #{params.beginRechargeTime} and #{params.endRechargeTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectRechargeRecordByRechargeId" parameterType="Long" resultMap="RechargeRecordResult">
+        <include refid="selectRechargeRecordVo"/>
+        where recharge_id = #{rechargeId}
+    </select>
+
+    <insert id="insertRechargeRecord" parameterType="RechargeRecord" useGeneratedKeys="true" keyProperty="rechargeId">
+        insert into recharge_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,</if>
+            <if test="amount != null">amount,</if>
+            <if test="method != null and method != ''">method,</if>
+            <if test="rechargeTime != null">recharge_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="amount != null">#{amount},</if>
+            <if test="method != null and method != ''">#{method},</if>
+            <if test="rechargeTime != null">#{rechargeTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateRechargeRecord" parameterType="RechargeRecord">
+        update recharge_record
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="amount != null">amount = #{amount},</if>
+            <if test="method != null and method != ''">method = #{method},</if>
+            <if test="rechargeTime != null">recharge_time = #{rechargeTime},</if>
+        </trim>
+        where recharge_id = #{rechargeId}
+    </update>
+
+    <delete id="deleteRechargeRecordByRechargeId" parameterType="Long">
+        delete from recharge_record where recharge_id = #{rechargeId}
+    </delete>
+
+    <delete id="deleteRechargeRecordByRechargeIds" parameterType="String">
+        delete from recharge_record where recharge_id in 
+        <foreach item="rechargeId" collection="array" open="(" separator="," close=")">
+            #{rechargeId}
+        </foreach>
+    </delete>
+
+</mapper>

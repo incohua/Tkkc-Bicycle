@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.chargingRecord.mapper.ChargingRecordMapper">
+    
+    <resultMap type="ChargingRecord" id="ChargingRecordResult">
+        <result property="transactionId"    column="transaction_id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="chargeDuration"    column="charge_duration"    />
+        <result property="chargeAmount"    column="charge_amount"    />
+        <result property="startTime"    column="start_time"    />
+        <result property="endTime"    column="end_time"    />
+        <result property="socketId"    column="socket_id"    />
+        <result property="chargerId"    column="charger_id"    />
+        <result property="chargeStatus"    column="charge_status"    />
+    </resultMap>
+
+    <sql id="selectChargingRecordVo">
+        select transaction_id, user_id, charge_duration, charge_amount, start_time, end_time, socket_id, charger_id, charge_status from charging_record
+    </sql>
+
+    <select id="selectChargingRecordList" parameterType="ChargingRecord" resultMap="ChargingRecordResult">
+        <include refid="selectChargingRecordVo"/>
+        <where>  
+            <if test="transactionId != null "> and transaction_id = #{transactionId}</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="chargeDuration != null "> and charge_duration = #{chargeDuration}</if>
+            <if test="chargeAmount != null "> and charge_amount = #{chargeAmount}</if>
+            <if test="params.beginStartTime != null and params.beginStartTime != '' and params.endStartTime != null and params.endStartTime != ''"> and start_time between #{params.beginStartTime} and #{params.endStartTime}</if>
+            <if test="socketId != null  and socketId != ''"> and socket_id = #{socketId}</if>
+            <if test="chargerId != null  and chargerId != ''"> and charger_id = #{chargerId}</if>
+            <if test="chargeStatus != null  and chargeStatus != ''"> and charge_status = #{chargeStatus}</if>
+        </where>
+    </select>
+    
+    <select id="selectChargingRecordByTransactionId" parameterType="Long" resultMap="ChargingRecordResult">
+        <include refid="selectChargingRecordVo"/>
+        where transaction_id = #{transactionId}
+    </select>
+
+    <insert id="insertChargingRecord" parameterType="ChargingRecord" useGeneratedKeys="true" keyProperty="transactionId">
+        insert into charging_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,</if>
+            <if test="chargeDuration != null">charge_duration,</if>
+            <if test="chargeAmount != null">charge_amount,</if>
+            <if test="startTime != null">start_time,</if>
+            <if test="endTime != null">end_time,</if>
+            <if test="socketId != null">socket_id,</if>
+            <if test="chargerId != null">charger_id,</if>
+            <if test="chargeStatus != null">charge_status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="chargeDuration != null">#{chargeDuration},</if>
+            <if test="chargeAmount != null">#{chargeAmount},</if>
+            <if test="startTime != null">#{startTime},</if>
+            <if test="endTime != null">#{endTime},</if>
+            <if test="socketId != null">#{socketId},</if>
+            <if test="chargerId != null">#{chargerId},</if>
+            <if test="chargeStatus != null">#{chargeStatus},</if>
+         </trim>
+    </insert>
+
+    <update id="updateChargingRecord" parameterType="ChargingRecord">
+        update charging_record
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="chargeDuration != null">charge_duration = #{chargeDuration},</if>
+            <if test="chargeAmount != null">charge_amount = #{chargeAmount},</if>
+            <if test="startTime != null">start_time = #{startTime},</if>
+            <if test="endTime != null">end_time = #{endTime},</if>
+            <if test="socketId != null">socket_id = #{socketId},</if>
+            <if test="chargerId != null">charger_id = #{chargerId},</if>
+            <if test="chargeStatus != null">charge_status = #{chargeStatus},</if>
+        </trim>
+        where transaction_id = #{transactionId}
+    </update>
+
+    <delete id="deleteChargingRecordByTransactionId" parameterType="Long">
+        delete from charging_record where transaction_id = #{transactionId}
+    </delete>
+
+    <delete id="deleteChargingRecordByTransactionIds" parameterType="String">
+        delete from charging_record where transaction_id in 
+        <foreach item="transactionId" collection="array" open="(" separator="," close=")">
+            #{transactionId}
+        </foreach>
+    </delete>
+
+</mapper>

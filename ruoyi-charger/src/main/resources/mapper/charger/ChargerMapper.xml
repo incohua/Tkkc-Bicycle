@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.charger.mapper.ChargerMapper">
+    
+    <resultMap type="Charger" id="ChargerResult">
+        <result property="chargerId"    column="charger_id"    />
+        <result property="region"    column="region"    />
+        <result property="status"    column="status"    />
+        <result property="socketCount"    column="socket_count"    />
+    </resultMap>
+
+    <sql id="selectChargerVo">
+        select charger_id, region, status, socket_count from charger
+    </sql>
+
+    <select id="selectChargerList" parameterType="Charger" resultMap="ChargerResult">
+        <include refid="selectChargerVo"/>
+        <where>  
+            <if test="region != null  and region != ''"> and region = #{region}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+            <if test="socketCount != null "> and socket_count = #{socketCount}</if>
+        </where>
+    </select>
+    
+    <select id="selectChargerByChargerId" parameterType="Long" resultMap="ChargerResult">
+        <include refid="selectChargerVo"/>
+        where charger_id = #{chargerId}
+    </select>
+
+    <insert id="insertCharger" parameterType="Charger" useGeneratedKeys="true" keyProperty="chargerId">
+        insert into charger
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="region != null and region != ''">region,</if>
+            <if test="status != null and status != ''">status,</if>
+            <if test="socketCount != null">socket_count,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="region != null and region != ''">#{region},</if>
+            <if test="status != null and status != ''">#{status},</if>
+            <if test="socketCount != null">#{socketCount},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCharger" parameterType="Charger">
+        update charger
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="region != null and region != ''">region = #{region},</if>
+            <if test="status != null and status != ''">status = #{status},</if>
+            <if test="socketCount != null">socket_count = #{socketCount},</if>
+        </trim>
+        where charger_id = #{chargerId}
+    </update>
+
+    <delete id="deleteChargerByChargerId" parameterType="Long">
+        delete from charger where charger_id = #{chargerId}
+    </delete>
+
+    <delete id="deleteChargerByChargerIds" parameterType="String">
+        delete from charger where charger_id in 
+        <foreach item="chargerId" collection="array" open="(" separator="," close=")">
+            #{chargerId}
+        </foreach>
+    </delete>
+
+</mapper>

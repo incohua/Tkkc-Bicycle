@@ -193,6 +193,20 @@
                 <version>${ruoyi.version}</version>
             </dependency>
 
+            <!--充电模块-->
+            <dependency>
+                <groupId>com.ruoyi</groupId>
+                <artifactId>ruoyi-charger</artifactId>
+                <version>${ruoyi.version}</version>
+            </dependency>
+
+            <!--充电记录模块-->
+            <dependency>
+                <groupId>com.ruoyi</groupId>
+                <artifactId>ruoyi-chargingRecord</artifactId>
+                <version>${ruoyi.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -204,6 +218,12 @@
         <module>ruoyi-generator</module>
         <module>ruoyi-common</module>
         <module>ruoyi-charger</module>
+        <module>ruoyi-chargingRecord</module>
+        <module>ruoyi-maintenance_record</module>
+        <module>ruoyi-recharge_record</module>
+        <module>ruoyi-recharge_records</module>
+        <module>ruoyi-socket</module>
+        <module>ruoyi-user_feedback</module>
     </modules>
     <packaging>pom</packaging>
 

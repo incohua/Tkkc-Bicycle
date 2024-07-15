@@ -71,6 +71,42 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+
+        <!--充电模块 07.15 ver1.0-->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>ruoyi-charger</artifactId>
+        </dependency>
+
+        <!--充电记录模块 07.15 ver1.0-->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>ruoyi-chargingRecord</artifactId>
+            <version>4.7.9</version>
+        </dependency>
+
+        <!--维修工单模块 07.15 ver1.0-->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>ruoyi-maintenance_record</artifactId>
+            <version>4.7.9</version>
+        </dependency>
+
+<!--        &lt;!&ndash;用户充值模块 07.15 ver1.0&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>com.ruoyi</groupId>-->
+<!--            <artifactId>ruoyi-recharge_record</artifactId>-->
+<!--        </dependency>-->
+
+        <!--插座模块 07.15 ver1.0-->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>ruoyi-socket</artifactId>
+            <version>4.7.9</version>
+        </dependency>
+
+
+
     </dependencies>
 
     <build>

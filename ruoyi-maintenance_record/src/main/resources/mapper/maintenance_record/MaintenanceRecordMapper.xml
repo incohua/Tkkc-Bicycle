@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.maintenance_record.mapper.MaintenanceRecordMapper">
+    
+    <resultMap type="MaintenanceRecord" id="MaintenanceRecordResult">
+        <result property="maintenanceId"    column="maintenance_id"    />
+        <result property="maintenanceTime"    column="maintenance_time"    />
+        <result property="issue"    column="issue"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectMaintenanceRecordVo">
+        select maintenance_id, maintenance_time, issue, status from maintenance_record
+    </sql>
+
+    <select id="selectMaintenanceRecordList" parameterType="MaintenanceRecord" resultMap="MaintenanceRecordResult">
+        <include refid="selectMaintenanceRecordVo"/>
+        <where>  
+            <if test="params.beginMaintenanceTime != null and params.beginMaintenanceTime != '' and params.endMaintenanceTime != null and params.endMaintenanceTime != ''"> and maintenance_time between #{params.beginMaintenanceTime} and #{params.endMaintenanceTime}</if>
+            <if test="issue != null  and issue != ''"> and issue = #{issue}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectMaintenanceRecordByMaintenanceId" parameterType="Long" resultMap="MaintenanceRecordResult">
+        <include refid="selectMaintenanceRecordVo"/>
+        where maintenance_id = #{maintenanceId}
+    </select>
+
+    <insert id="insertMaintenanceRecord" parameterType="MaintenanceRecord" useGeneratedKeys="true" keyProperty="maintenanceId">
+        insert into maintenance_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="maintenanceTime != null">maintenance_time,</if>
+            <if test="issue != null and issue != ''">issue,</if>
+            <if test="status != null and status != ''">status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="maintenanceTime != null">#{maintenanceTime},</if>
+            <if test="issue != null and issue != ''">#{issue},</if>
+            <if test="status != null and status != ''">#{status},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMaintenanceRecord" parameterType="MaintenanceRecord">
+        update maintenance_record
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="maintenanceTime != null">maintenance_time = #{maintenanceTime},</if>
+            <if test="issue != null and issue != ''">issue = #{issue},</if>
+            <if test="status != null and status != ''">status = #{status},</if>
+        </trim>
+        where maintenance_id = #{maintenanceId}
+    </update>
+
+    <delete id="deleteMaintenanceRecordByMaintenanceId" parameterType="Long">
+        delete from maintenance_record where maintenance_id = #{maintenanceId}
+    </delete>
+
+    <delete id="deleteMaintenanceRecordByMaintenanceIds" parameterType="String">
+        delete from maintenance_record where maintenance_id in 
+        <foreach item="maintenanceId" collection="array" open="(" separator="," close=")">
+            #{maintenanceId}
+        </foreach>
+    </delete>
+
+</mapper>
