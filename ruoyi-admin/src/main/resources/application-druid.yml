@@ -6,16 +6,16 @@ spring:
         druid:
             # 主库数据源
             master:
-                url: jdbc:mysql://192.168.124.11:3306/ruoyi?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+                url: jdbc:mysql://141.98.196.89:53066/ruoyi?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
                 username: ruoyi
-                password: password
+                password: rY328nTkJrnfME4X
             # 从库数据源
             slave:
                 # 从数据源开关，默认关闭
                 enabled: false
-                url: jdbc:mysql://192.168.124.12:3306/ruoyi_slave?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+                url: jdbc:mysql://141.98.196.89:53066/ruoyi?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
                 username: ruoyi
-                password: password
+                password: rY328nTkJrnfME4X
             # 初始连接数
             initialSize: 5
             # 最小连接池数量
@@ -46,7 +46,7 @@ spring:
                 url-pattern: /druid/*
                 # 控制台管理用户名和密码
                 login-username: ruoyi
-                login-password: 123456
+                login-password: rY328nTkJrnfME4X
             filter:
                 stat:
                     enabled: true
