@@ -92,11 +92,12 @@
             <version>4.7.9</version>
         </dependency>
 
-<!--        &lt;!&ndash;用户充值模块 07.15 ver1.0&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.ruoyi</groupId>-->
-<!--            <artifactId>ruoyi-recharge_record</artifactId>-->
-<!--        </dependency>-->
+        <!--用户充值模块 07.15 ver1.0-->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>ruoyi-recharge_record</artifactId>
+            <version>4.7.9</version>
+        </dependency>
 
         <!--插座模块 07.15 ver1.0-->
         <dependency>

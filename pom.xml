@@ -220,10 +220,10 @@
         <module>ruoyi-charger</module>
         <module>ruoyi-chargingRecord</module>
         <module>ruoyi-maintenance_record</module>
-        <module>ruoyi-recharge_record</module>
-        <module>ruoyi-recharge_records</module>
         <module>ruoyi-socket</module>
         <module>ruoyi-user_feedback</module>
+        <module>ruoyi-recharge_record</module>
+
     </modules>
     <packaging>pom</packaging>
 
