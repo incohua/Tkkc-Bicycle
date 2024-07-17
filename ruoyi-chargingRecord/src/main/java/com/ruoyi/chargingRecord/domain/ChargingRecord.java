@@ -18,7 +18,7 @@ public class ChargingRecord extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** 充值记录序号 */
+    /** 充电记录序号 */
     private Long transactionId;
 
     /** 用户的唯一编号 */
