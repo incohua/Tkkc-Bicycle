@@ -68,5 +68,6 @@ CREATE TABLE `user_feedback` (
                                  `user_id` INT(10) NOT NULL COMMENT '用户的唯一编号',
                                  `issue` VARCHAR(50) NOT NULL COMMENT '需要维修的问题',
                                  `suggestion` VARCHAR(50) NOT NULL COMMENT '用户提供平台优化建议',
+                                 `status` VARCHAR(10) NOT NULL COMMENT '反馈状态显示',
                                  FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='存储用户的反馈信息内容';
