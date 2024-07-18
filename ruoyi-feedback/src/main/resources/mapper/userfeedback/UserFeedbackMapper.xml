@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ruoyi.ruoyi_feedback.mapper.UserFeedbackMapper">
+<mapper namespace="com.ruoyi.feedback.mapper.UserFeedbackMapper">
     
     <resultMap type="UserFeedback" id="UserFeedbackResult">
         <result property="userId"    column="user_id"    />

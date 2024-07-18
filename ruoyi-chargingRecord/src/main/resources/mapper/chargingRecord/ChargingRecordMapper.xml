@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.chargingRecord.mapper.ChargingRecordMapper">
-    
+
     <resultMap type="ChargingRecord" id="ChargingRecordResult">
         <result property="transactionId"    column="transaction_id"    />
         <result property="userId"    column="user_id"    />
@@ -14,15 +14,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="socketId"    column="socket_id"    />
         <result property="chargerId"    column="charger_id"    />
         <result property="chargeStatus"    column="charge_status"    />
+        <result property="hours"    column="hours"    />
     </resultMap>
 
     <sql id="selectChargingRecordVo">
-        select transaction_id, user_id, charge_duration, charge_amount, start_time, end_time, socket_id, charger_id, charge_status from charging_record
+        select transaction_id, user_id, charge_duration, charge_amount, start_time, end_time, socket_id, charger_id, charge_status,hours from charging_record
     </sql>
 
     <select id="selectChargingRecordList" parameterType="ChargingRecord" resultMap="ChargingRecordResult">
         <include refid="selectChargingRecordVo"/>
-        <where>  
+        <where>
             <if test="transactionId != null "> and transaction_id = #{transactionId}</if>
             <if test="userId != null "> and user_id = #{userId}</if>
             <if test="chargeDuration != null "> and charge_duration = #{chargeDuration}</if>
@@ -33,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="chargeStatus != null  and chargeStatus != ''"> and charge_status = #{chargeStatus}</if>
         </where>
     </select>
-    
+
     <select id="selectChargingRecordByTransactionId" parameterType="Long" resultMap="ChargingRecordResult">
         <include refid="selectChargingRecordVo"/>
         where transaction_id = #{transactionId}
@@ -50,6 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="socketId != null">socket_id,</if>
             <if test="chargerId != null">charger_id,</if>
             <if test="chargeStatus != null">charge_status,</if>
+            <if test="hours != null">hours,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="userId != null">#{userId},</if>
@@ -60,6 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="socketId != null">#{socketId},</if>
             <if test="chargerId != null">#{chargerId},</if>
             <if test="chargeStatus != null">#{chargeStatus},</if>
+            <if test="hours != null">#{hours},</if>
          </trim>
     </insert>
 
@@ -74,6 +77,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="socketId != null">socket_id = #{socketId},</if>
             <if test="chargerId != null">charger_id = #{chargerId},</if>
             <if test="chargeStatus != null">charge_status = #{chargeStatus},</if>
+            <if test="hours != null">hours = #{hours},</if>
         </trim>
         where transaction_id = #{transactionId}
     </update>
@@ -83,7 +87,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </delete>
 
     <delete id="deleteChargingRecordByTransactionIds" parameterType="String">
-        delete from charging_record where transaction_id in 
+        delete from charging_record where transaction_id in
         <foreach item="transactionId" collection="array" open="(" separator="," close=")">
             #{transactionId}
         </foreach>

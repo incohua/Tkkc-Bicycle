@@ -21,7 +21,7 @@ import com.ruoyi.common.core.page.TableDataInfo;
 
 /**
  * 充电记录Controller
- * 
+ *
  * @author incohua
  * @date 2024-07-15
  */
@@ -34,11 +34,19 @@ public class ChargingRecordController extends BaseController
     @Autowired
     private IChargingRecordService chargingRecordService;
 
+
     @RequiresPermissions("chargingRecord:charingRecordinfo:view")
     @GetMapping()
     public String charingRecordinfo()
     {
         return prefix + "/charingRecordinfo";
+    }
+
+    @RequiresPermissions("chargingRecord:charingRecordinfo:order")
+    @GetMapping("/order")
+    public String charingRecordinfoOrder()
+    {
+        return prefix + "/charingRecordOrder";
     }
 
     /**

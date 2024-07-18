@@ -1,4 +1,4 @@
-package com.ruoyi.ruoyi_feedback.domain;
+package com.ruoyi.feedback.domain;
 
 import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -10,7 +10,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * 反馈信息对象 user_feedback
  * 
  * @author incohua
- * @date 2024-07-17
+ * @date 2024-07-18
  */
 public class UserFeedback extends BaseEntity
 {

@@ -1,13 +1,13 @@
-package com.ruoyi.ruoyi_feedback.mapper;
+package com.ruoyi.feedback.mapper;
 
 import java.util.List;
-import com.ruoyi.ruoyi_feedback.domain.UserFeedback;
+import com.ruoyi.feedback.domain.UserFeedback;
 
 /**
  * 反馈信息Mapper接口
  * 
  * @author incohua
- * @date 2024-07-17
+ * @date 2024-07-18
  */
 public interface UserFeedbackMapper 
 {

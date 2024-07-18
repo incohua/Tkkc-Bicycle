@@ -10,7 +10,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
  * 充电记录对象 charging_record
- * 
+ *
  * @author incohua
  * @date 2024-07-15
  */
@@ -32,13 +32,13 @@ public class ChargingRecord extends BaseEntity
     private BigDecimal chargeAmount;
 
     /** 充电开始时间 */
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @Excel(name = "充电开始时间", width = 30, dateFormat = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Excel(name = "充电开始时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
     private Date startTime;
 
     /** 充电结束时间 */
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @Excel(name = "充电结束时间", width = 30, dateFormat = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Excel(name = "充电结束时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
     private Date endTime;
 
     /** 使用的插座ID */
@@ -53,92 +53,102 @@ public class ChargingRecord extends BaseEntity
     @Excel(name = "充电进度状态")
     private String chargeStatus;
 
-    public void setTransactionId(Long transactionId) 
+    private int hours;
+
+    public int getHours() {
+        return hours;
+    }
+
+    public void setHours(int hours) {
+        this.hours = hours;
+    }
+
+    public void setTransactionId(Long transactionId)
     {
         this.transactionId = transactionId;
     }
 
-    public Long getTransactionId() 
+    public Long getTransactionId()
     {
         return transactionId;
     }
 
-    public void setUserId(Long userId) 
+    public void setUserId(Long userId)
     {
         this.userId = userId;
     }
 
-    public Long getUserId() 
+    public Long getUserId()
     {
         return userId;
     }
 
-    public void setChargeDuration(Date chargeDuration) 
+    public void setChargeDuration(Date chargeDuration)
     {
         this.chargeDuration = chargeDuration;
     }
 
-    public Date getChargeDuration() 
+    public Date getChargeDuration()
     {
         return chargeDuration;
     }
 
-    public void setChargeAmount(BigDecimal chargeAmount) 
+    public void setChargeAmount(BigDecimal chargeAmount)
     {
         this.chargeAmount = chargeAmount;
     }
 
-    public BigDecimal getChargeAmount() 
+    public BigDecimal getChargeAmount()
     {
         return chargeAmount;
     }
 
-    public void setStartTime(Date startTime) 
+    public void setStartTime(Date startTime)
     {
         this.startTime = startTime;
     }
 
-    public Date getStartTime() 
+    public Date getStartTime()
     {
         return startTime;
     }
 
-    public void setEndTime(Date endTime) 
+    public void setEndTime(Date endTime)
     {
         this.endTime = endTime;
     }
 
-    public Date getEndTime() 
+    public Date getEndTime()
     {
         return endTime;
     }
 
-    public void setSocketId(String socketId) 
+    public void setSocketId(String socketId)
     {
         this.socketId = socketId;
     }
 
-    public String getSocketId() 
+    public String getSocketId()
     {
         return socketId;
     }
 
-    public void setChargerId(String chargerId) 
+    public void setChargerId(String chargerId)
     {
         this.chargerId = chargerId;
     }
 
-    public String getChargerId() 
+    public String getChargerId()
     {
         return chargerId;
     }
 
-    public void setChargeStatus(String chargeStatus) 
+    public void setChargeStatus(String chargeStatus)
     {
         this.chargeStatus = chargeStatus;
     }
 
-    public String getChargeStatus() 
+    public String getChargeStatus()
     {
         return chargeStatus;
     }

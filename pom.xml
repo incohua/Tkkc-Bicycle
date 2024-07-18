@@ -224,6 +224,7 @@
         <module>ruoyi-recharge_record</module>
         <module>user-recharge</module>
         <module>ruoyi-feedback</module>
+        <module>ruoyi-feedback</module>
 
     </modules>
     <packaging>pom</packaging>

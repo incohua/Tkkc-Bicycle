@@ -1,18 +1,18 @@
-package com.ruoyi.ruoyi_feedback.service.impl;
+package com.ruoyi.feedback.service.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.ruoyi_feedback.mapper.UserFeedbackMapper;
-import com.ruoyi.ruoyi_feedback.domain.UserFeedback;
-import com.ruoyi.ruoyi_feedback.service.IUserFeedbackService;
+import com.ruoyi.feedback.mapper.UserFeedbackMapper;
+import com.ruoyi.feedback.domain.UserFeedback;
+import com.ruoyi.feedback.service.IUserFeedbackService;
 import com.ruoyi.common.core.text.Convert;
 
 /**
  * 反馈信息Service业务层处理
  * 
  * @author incohua
- * @date 2024-07-17
+ * @date 2024-07-18
  */
 @Service
 public class UserFeedbackServiceImpl implements IUserFeedbackService 

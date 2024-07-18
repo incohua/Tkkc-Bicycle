@@ -6,14 +6,14 @@ spring:
         druid:
             # 主库数据源
             master:
-                url: jdbc:mysql://127.0.0.1:3306/ruoyi?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+                url: jdbc:mysql://127.0.0.1:3306/ry?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
                 username: root
                 password: 123456
             # 从库数据源
             slave:
                 # 从数据源开关，默认关闭
                 enabled: false
-                url: jdbc:mysql://127.0.0.1:3306/ruoyi?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+                url: jdbc:mysql://127.0.0.1:3306/ry?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
                 username: root
                 password: 123456
             # 初始连接数

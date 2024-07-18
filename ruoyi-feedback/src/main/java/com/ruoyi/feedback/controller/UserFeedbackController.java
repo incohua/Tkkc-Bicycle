@@ -1,4 +1,4 @@
-package com.ruoyi.ruoyi_feedback.controller;
+package com.ruoyi.feedback.controller;
 
 import java.util.List;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.enums.BusinessType;
-import com.ruoyi.ruoyi_feedback.domain.UserFeedback;
-import com.ruoyi.ruoyi_feedback.service.IUserFeedbackService;
+import com.ruoyi.feedback.domain.UserFeedback;
+import com.ruoyi.feedback.service.IUserFeedbackService;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.utils.poi.ExcelUtil;
@@ -23,7 +23,7 @@ import com.ruoyi.common.core.page.TableDataInfo;
  * 反馈信息Controller
  * 
  * @author incohua
- * @date 2024-07-17
+ * @date 2024-07-18
  */
 @Controller
 @RequestMapping("/userfeedback/feedback")
