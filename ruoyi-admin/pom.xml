@@ -105,8 +105,12 @@
             <version>4.7.9</version>
         </dependency>
 
-        <!--用户反馈模块 07.15 ver1.0-->
-        <!--todo:update-->
+<!--        用户反馈模块 07.15 ver1.0-->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>ruoyi-feedback</artifactId>
+            <version>4.7.9</version>
+        </dependency>
 
         <!--用户充值模块-->
         <dependency>

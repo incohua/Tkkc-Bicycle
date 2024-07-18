@@ -221,9 +221,10 @@
         <module>ruoyi-chargingRecord</module>
         <module>ruoyi-maintenance_record</module>
         <module>ruoyi-socket</module>
-        <module>ruoyi-user_feedback</module>
         <module>ruoyi-recharge_record</module>
         <module>user-recharge</module>
+        <module>ruoyi-feedback</module>
+        <module>ruoyi-feedback</module>
 
     </modules>
     <packaging>pom</packaging>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.feedback.mapper.UserFeedbackMapper">
+    
+    <resultMap type="UserFeedback" id="UserFeedbackResult">
+        <result property="userId"    column="user_id"    />
+        <result property="issue"    column="issue"    />
+        <result property="suggestion"    column="suggestion"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectUserFeedbackVo">
+        select user_id, issue, suggestion, status from user_feedback
+    </sql>
+
+    <select id="selectUserFeedbackList" parameterType="UserFeedback" resultMap="UserFeedbackResult">
+        <include refid="selectUserFeedbackVo"/>
+        <where>  
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="issue != null  and issue != ''"> and issue = #{issue}</if>
+            <if test="suggestion != null  and suggestion != ''"> and suggestion = #{suggestion}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectUserFeedbackByUserId" parameterType="Long" resultMap="UserFeedbackResult">
+        <include refid="selectUserFeedbackVo"/>
+        where user_id = #{userId}
+    </select>
+
+    <insert id="insertUserFeedback" parameterType="UserFeedback">
+        insert into user_feedback
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,</if>
+            <if test="issue != null and issue != ''">issue,</if>
+            <if test="suggestion != null and suggestion != ''">suggestion,</if>
+            <if test="status != null and status != ''">status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="issue != null and issue != ''">#{issue},</if>
+            <if test="suggestion != null and suggestion != ''">#{suggestion},</if>
+            <if test="status != null and status != ''">#{status},</if>
+         </trim>
+    </insert>
+
+    <update id="updateUserFeedback" parameterType="UserFeedback">
+        update user_feedback
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="issue != null and issue != ''">issue = #{issue},</if>
+            <if test="suggestion != null and suggestion != ''">suggestion = #{suggestion},</if>
+            <if test="status != null and status != ''">status = #{status},</if>
+        </trim>
+        where user_id = #{userId}
+    </update>
+
+    <delete id="deleteUserFeedbackByUserId" parameterType="Long">
+        delete from user_feedback where user_id = #{userId}
+    </delete>
+
+    <delete id="deleteUserFeedbackByUserIds" parameterType="String">
+        delete from user_feedback where user_id in 
+        <foreach item="userId" collection="array" open="(" separator="," close=")">
+            #{userId}
+        </foreach>
+    </delete>
+
+</mapper>
